@@ -1,11 +1,10 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) {
-$idUser = 1;
+if($idUser) {
 /* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/alert.data.class1.php");
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/alert.data.class1.php");
 
 $si1 = new alertData1();
 $si1b = new alertData1();

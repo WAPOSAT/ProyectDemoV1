@@ -1,14 +1,17 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) { //corregir negacion
-$idUser = 1;
+if($idUser) {
+
+// Data send by AJAX
+//*****************************************
 $idProcessBlock = $_POST["IdProcessBlock"];
-$idProcessBlock = 5;
+//*****************************************
+
 
 /* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/process.block.class2.php");
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/process.block.class2.php");
 
 $si1 = new processBlock2();
 $si1b = new processBlock2();

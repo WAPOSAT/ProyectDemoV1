@@ -1,14 +1,16 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) { //corregir negacion
-$idUser = 1;
+if($idUser) {
+
+// Data send by AJAX
+//*****************************************
 $idStationBlock = $_POST["IdStationBlock"];
-$idStationBlock = 1;
+//*****************************************
 
 /* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/station.block.class1.php");
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/station.block.class1.php");
 
 $si1 = new stationBlock1();
 $si1b = new stationBlock1();

@@ -1,22 +1,22 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) { //corregir negacion
-$idUser = 1;
+if($idUser) {
+
+// Data send by AJAX
+//*****************************************
 $idStationBlock = $_POST["IdStationBlock"];
-$idStationBlock = 1;
 $idSensor = $_POST["IdSensor"];
-$idSensor = 1;
 $lastID = $_POST["LastID"];
-$lastID = 3;
+//*****************************************
 
 /* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/sensor.data.class1.php");
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/sensor.data.class2.php");
 
-$si1 = new sensorData1();
-$si1b = new sensorData1();
-$si1c = new sensorData1();
+$si1 = new sensorData2();
+$si1b = new sensorData2();
+$si1c = new sensorData2();
 
 $si1->getSensor($idStationBlock, $idSensor);
 $Sensor = $si1->retornar_SELECT();

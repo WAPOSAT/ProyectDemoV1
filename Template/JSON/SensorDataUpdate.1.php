@@ -1,18 +1,18 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) { //corregir negacion
-$idUser = 1;
+if($idUser) {
+
+// Data send by AJAX
+//*****************************************
 $idStationBlock = $_POST["IdStationBlock"];
-$idStationBlock = 1;
 $idSensor = $_POST["IdSensor"];
-$idSensor = 1;
-$long = $_POST["Long"];
-$long = 20;
+$lastID = $_POST["LastID"];
+//*****************************************
 
 /* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/sensor.data.class1.php");
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/sensor.data.class1.php");
 
 $si1 = new sensorData1();
 $si1b = new sensorData1();
@@ -27,7 +27,7 @@ $MaxValue = $si1b->getMaxValue($Sensor["id_sensor"], 20);
 
 
 
-$si1->getData($Sensor["id_sensor"],$long);
+$si1->getNewData($Sensor["id_sensor"], $lastID);
 $long = 0;
 $AcumVal = 0;
 $lastID = 0;
@@ -69,7 +69,7 @@ $MeanValue = $AcumVal/$long;
 $MeanValue = round($MeanValue,2);
 
     
-$StaticInfo = array('Id'=>$Sensor["id_sensor"], 'IdStationBlock'=>$Sensor["id_block"], 'Name'=>$Sensor["codename"]."p", 'Code'=>$PB1["codename"],  'Unit'=>"ppm", 'MP'=>$MP,  'LMP'=>$Sensor["up_danger_limit"], 'LMR'=>$Sensor["up_risk_limit"], 'MinValue'=>$MinValue, 'MaxValue'=>$MaxValue, 'MeanValue'=>$MeanValue, 'Long'=>$long, 'Last'=>$Last, 'Data'=>$Data);
+$StaticInfo = array('Id'=>$Sensor["id_sensor"], 'IdStationBlock'=>$Sensor["id_block"],'Long'=>$long, 'Last'=>$Last, 'Data'=>$Data);
 
 echo json_encode($StaticInfo);
 

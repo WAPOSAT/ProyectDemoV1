@@ -1,14 +1,16 @@
 <?php 
 session_start();
 $idUser = $_SESSION["idUser"];
-if(!$idUser) {
-$idUser = 1;
-/* ....................................................................... */
-require_once ("../require/conexion.class.php");
-require_once ("../require/static.info.class2.php");
+if($idUser) {
 
-$si1 = new staticInfo2();
-$si1b = new staticInfo2();
+
+
+/* ....................................................................... */
+require_once ("../../require/conexion.class.php");
+require_once ("../../require/static.info.class1.php");
+
+$si1 = new staticInfo1();
+$si1b = new staticInfo1();
 
 $si1->getUser($idUser);
 
@@ -26,7 +28,7 @@ $ProcessBlock = array();
 While($PBs = $si1->retornar_SELECT()){
     $numStations = $si1b->getNumStationBlocks($PBs["id_block"]);
     
-    $new = array('Id'=>$PBs["id_block"], 'Name'=>$PBs["block_name"], 'CodeName'=>$PBs["codename"], 'NumStationBlocks'=>$numStations);
+    $new = array('Id'=>$PBs["id_block"], 'Name'=>$PBs["block_name"], 'CodeName'=>$PBs["codename"], 'NumStationBlocks'=>$numStations, 'vista'=>1 );
     array_push($ProcessBlock, $new);
 }
 
