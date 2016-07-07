@@ -6,7 +6,9 @@ First load of information about specific MonitorBlock, it include Static and Dyn
 // Data send by AJAX
 //Identification number of a specific ProcessBlock, use Blocks.id_block with id_block_type=2
 //*****************************************
-$idStationBlock = $_POST["IdStationBlock"]; 
+$idStationBlock = $_POST["IdStationBlock"];
+$DateBegin = $_POST["DateBegin"];
+$DateEnd = $_POST["DateEnd"];
 //*****************************************
 
 switch ($idStationBlock) {
